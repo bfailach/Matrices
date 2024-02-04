@@ -1,0 +1,69 @@
+package matrices;
+
+import java.util.Scanner;
+
+public class matrices {
+
+    public static void main(String[] args) {
+
+        Scanner scan = new Scanner(System.in);
+
+        int matriz[][] = new int[3][3];
+        int numero = 0;
+
+        // Llenar matriz ordenada mediante dos bucles anidados
+
+        for (int a = 0; a < matriz.length; a++) {
+            for (int b = 0; b < matriz[a].length; b++) {
+                System.out.println("Digite el valor para la posición [" + a + "," + b + "] de una matríz ordenada");
+                matriz[a][b] = scan.nextInt();
+            }
+        }
+
+        // Mostrar la matriz ordenada
+
+        System.out.println("Matriz ordenada ingresada:");
+        for (int a = 0; a < matriz.length; a++) {
+            for (int b = 0; b < matriz[a].length; b++) {
+                System.out.print(matriz[a][b] + " ");
+            }
+            System.out.println(); 
+        }
+
+        // Pedir el número a buscar
+
+        System.out.println("Ingrese el número que desea buscar en la matríz ordenada:");
+        numero = scan.nextInt();
+
+        // Buscar el número en la matriz
+
+        buscar(matriz, numero);
+    }
+
+        // Método de busqueda de mayor o menor que recorre la matríz mientras que el n de filas sea menor que el n de filas y columnas o mayor o igual que 0
+
+    public static void buscar(int matriz[][], int numero) {
+        int filas = matriz.length;
+        int columnas = matriz[0].length;
+        int fila = 0;
+        int columna = columnas - 1;
+    
+        while (fila < filas && columna >= 0) {
+            if (matriz[fila][columna] == numero) {
+                System.out.println("El elemento " + numero + " se encuentra en la posición: (" + fila + ", " + columna + ")");
+                return;
+
+        // Si el número de la posición actual es mayor que n, se retrocede una columna de la misma fila. Si es menor, se avanza hasta encontrar n
+
+            } else if (matriz[fila][columna] > numero) {
+                columna--;
+            } else {
+                fila++;
+            }
+        }
+        
+        // El metodo de busqueda funciona siempre y cuando la matriz se ecuentre ordenada de manera ascendente
+
+        System.out.println("El elemento " + numero + " no está presente en la matriz o la matríz no está ordenada ascendentemente.");
+    }
+}
